@@ -115,7 +115,6 @@ int main(int argc, char** argv)  {
       // * Print out a 10 x 10 matrix for testing only    *
       // * Comment out when timing                        *
       // **************************************************
-      // printf("OPTIMIZED MATRIX: \n");
       // for (i = 0; i < m; i++) {
       //   for (j = 0; j < n; j++) {
       //     printf("%f ", C[i][j]);
