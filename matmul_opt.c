@@ -91,10 +91,17 @@ int main(int argc, char** argv)  {
       // **********************************
       // * Perform simple matrix multiply *
       // **********************************
-      for(j=0;j<n;j++) {
+      // for(j=0;j<n;j++) {
+      //   for(l=0;l<k;l++) {
+      //     for(i=0;i<m;i++) {
+      //       C[i][j] = C[i][j] + B[l][j]*A[i][l];
+      //     }
+      //   }
+      // }
+      for(j=0;j<m;j++) {
         for(l=0;l<k;l++) {
-          for(i=0;i<m;i++) {
-            C[i][j] = C[i][j] + B[l][j]*A[i][l];
+          for(i=0;i<n;i++) {
+            C[j][i] = C[j][i] + B[l][i]*A[j][l];
           }
         }
       }
@@ -108,7 +115,13 @@ int main(int argc, char** argv)  {
       // * Print out a 10 x 10 matrix for testing only    *
       // * Comment out when timing                        *
       // **************************************************
-
+      printf("OPTIMIZED MATRIX: \n");
+      for (i = 0; i < m; i++) {
+        for (j = 0; j < n; j++) {
+          printf("%f ", C[i][j]);
+        }
+        printf("\n");
+      }
  #ifdef PRINT_MATRIX
       fprintf(stdout, "Here is the matrix A:\n\n");
       for(i=0;i<m;i++) {
