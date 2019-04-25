@@ -98,10 +98,12 @@ int main(int argc, char** argv)  {
       //     }
       //   }
       // }
+      double a;
       for(j=0;j<m;j++) {
         for(l=0;l<k;l++) {
+          a = A[j][l];
           for(i=0;i<n;i++) {
-            C[j][i] = C[j][i] + B[l][i]*A[j][l];
+            C[j][i] = C[j][i] + B[l][i]*a;
           }
         }
       }
