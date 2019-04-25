@@ -23,6 +23,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 double **dmatrix(int nrl,int nrh,int ncl,int nch);
 void nerror(char *error_text);
@@ -84,7 +85,9 @@ int main(int argc, char** argv)  {
       // ******************************
       // * Start embedded timing here *
       // ******************************
-
+      clock_t start, end;
+      double cpu_time_used;
+      start = clock();
       // **********************************
       // * Perform simple matrix multiply *
       // **********************************
@@ -98,7 +101,9 @@ int main(int argc, char** argv)  {
       // ******************************
       // * Stop embedded timing here  *
       // ******************************
-
+      end = clock();
+      cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+      printf("%f seconds\n", cpu_time_used);
       // **************************************************
       // * Print out a 10 x 10 matrix for testing only    *
       // * Comment out when timing                        *
