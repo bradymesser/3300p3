@@ -27,7 +27,7 @@ opt:
 	./opt 4000 4000 4000
 	./opt 5000 5000 5000
 
-check: clean	#un comment the print statements to use this
+check: 	#un comment the print statements to use this
 	gcc matmul_naive.c -o naive -O0
 	gcc matmul_opt.c -o opt -O0
 	./naive 10 10 10 > naive.txt

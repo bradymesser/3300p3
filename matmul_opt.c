@@ -102,8 +102,12 @@ int main(int argc, char** argv)  {
       for(j=0;j<m;j++) {
         for(l=0;l<k;l++) {
           a = A[j][l];
-          for(i=0;i<n;i++) {
+          for(i=0;i<n;i+=5) {
             C[j][i] = C[j][i] + B[l][i]*a;
+            C[j][i+1] = C[j][i+1] + B[l][i+1]*a;
+            C[j][i+2] = C[j][i+2] + B[l][i+2]*a;
+            C[j][i+3] = C[j][i+3] + B[l][i+3]*a;
+            C[j][i+4] = C[j][i+4] + B[l][i+4]*a;
           }
         }
       }
@@ -119,7 +123,7 @@ int main(int argc, char** argv)  {
       // **************************************************
       // for (i = 0; i < m; i++) {
       //   for (j = 0; j < n; j++) {
-      //     printf("%f ", C[i][j]);
+      //     printf("%10.2f ", C[i][j]);
       //   }
       //   printf("\n");
       // }

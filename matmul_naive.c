@@ -108,12 +108,12 @@ int main(int argc, char** argv)  {
       // * Print out a 10 x 10 matrix for testing only    *
       // * Comment out when timing                        *
       // **************************************************
-      // for (i = 0; i < m; i++) {
-      //   for (j = 0; j < n; j++) {
-      //     printf("%f ", C[i][j]);
-      //   }
-      //   printf("\n");
-      // }
+      for (i = 0; i < m; i++) {
+        for (j = 0; j < n; j++) {
+          printf("%10.2f ", C[i][j]);
+        }
+        printf("\n");
+      }
  #ifdef PRINT_MATRIX
       fprintf(stdout, "Here is the matrix A:\n\n");
       for(i=0;i<m;i++) {
