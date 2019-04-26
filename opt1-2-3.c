@@ -107,10 +107,25 @@ int main(int argc, char** argv)  {
         for(l=0;l<k;l+= BLOCK_SIZE) {
           for(jj = j; jj < j + BLOCK_SIZE; jj++){
             for(ll = l; ll < l + BLOCK_SIZE; ll++){
-              a = A[j][l];
-              for(i=0;i<n;i++) {
-              C[jj][i] = C[jj][i] + B[ll][i]*a;
+              a = A[jj][ll];
+              for(i=0;i<n;i += 16) {
+                C[jj][i] = C[jj][i] + B[ll][i]*a;
+                C[jj][i+1] = C[jj][i+1] + B[ll][i+1]*a;
+                C[jj][i+2] = C[jj][i+2] + B[ll][i+2]*a;
+                C[jj][i+3] = C[jj][i+3] + B[ll][i+3]*a;
+                C[jj][i+4] = C[jj][i+4] + B[ll][i+4]*a;
+                C[jj][i+5] = C[jj][i+5] + B[ll][i+5]*a;
+                C[jj][i+6] = C[jj][i+6] + B[ll][i+6]*a;
+                C[jj][i+7] = C[jj][i+7] + B[ll][i+7]*a;
 
+                C[jj][i+8] = C[jj][i+8] + B[ll][i+8]*a;
+                C[jj][i+9] = C[jj][i+9] + B[ll][i+9]*a;
+                C[jj][i+10] = C[jj][i+10] + B[ll][i+10]*a;
+                C[jj][i+11] = C[jj][i+11] + B[ll][i+11]*a;
+                C[jj][i+12] = C[jj][i+12] + B[ll][i+12]*a;
+                C[jj][i+13] = C[jj][i+13] + B[ll][i+13]*a;
+                C[jj][i+14] = C[jj][i+14] + B[ll][i+14]*a;
+                C[jj][i+15] = C[jj][i+15] + B[ll][i+15]*a;
               }
             }
           }
@@ -137,12 +152,14 @@ int main(int argc, char** argv)  {
       // * Print out a 10 x 10 matrix for testing only    *
       // * Comment out when timing                        *
       // **************************************************
+      /*
       for (i = 0; i < m; i++) {
         for (j = 0; j < n; j++) {
           printf("%10.2f ", C[i][j]);
         }
         printf("\n");
       }
+      */
  #ifdef PRINT_MATRIX
       fprintf(stdout, "Here is the matrix A:\n\n");
       for(i=0;i<m;i++) {
