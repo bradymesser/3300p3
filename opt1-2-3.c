@@ -98,19 +98,35 @@ int main(int argc, char** argv)  {
       //     }
       //   }
       // }
+
+      int BLOCK_SIZE = 32;
+      int jj, ll;
       double a;
-      for(j=0;j<m;j++) {
-        for(l=0;l<k;l++) {
-          a = A[j][l];
-          for(i=0;i<n;i+=5) {
-            C[j][i] = C[j][i] + B[l][i]*a;
-            C[j][i+1] = C[j][i+1] + B[l][i+1]*a;
-            C[j][i+2] = C[j][i+2] + B[l][i+2]*a;
-            C[j][i+3] = C[j][i+3] + B[l][i+3]*a;
-            C[j][i+4] = C[j][i+4] + B[l][i+4]*a;
+
+      for(j=0;j<m;j+= BLOCK_SIZE) {
+        for(l=0;l<k;l+= BLOCK_SIZE) {
+          for(jj = j; jj < j + BLOCK_SIZE; jj++){
+            for(ll = l; ll < l + BLOCK_SIZE; ll++){
+              a = A[j][l];
+              for(i=0;i<n;i++) {
+              C[jj][i] = C[jj][i] + B[ll][i]*a;
+
+              }
+            }
           }
         }
       }
+
+      /* LOOP UNROLL
+      for(i=0;i<n;i+=5) {
+        C[j][i] = C[j][i] + B[l][i]*a;
+        C[j][i+1] = C[j][i+1] + B[l][i+1]*a;
+        C[j][i+2] = C[j][i+2] + B[l][i+2]*a;
+        C[j][i+3] = C[j][i+3] + B[l][i+3]*a;
+        C[j][i+4] = C[j][i+4] + B[l][i+4]*a;
+      }
+      */
+
       // ******************************
       // * Stop embedded timing here  *
       // ******************************
@@ -121,12 +137,12 @@ int main(int argc, char** argv)  {
       // * Print out a 10 x 10 matrix for testing only    *
       // * Comment out when timing                        *
       // **************************************************
-      // for (i = 0; i < m; i++) {
-      //   for (j = 0; j < n; j++) {
-      //     printf("%10.2f ", C[i][j]);
-      //   }
-      //   printf("\n");
-      // }
+      for (i = 0; i < m; i++) {
+        for (j = 0; j < n; j++) {
+          printf("%10.2f ", C[i][j]);
+        }
+        printf("\n");
+      }
  #ifdef PRINT_MATRIX
       fprintf(stdout, "Here is the matrix A:\n\n");
       for(i=0;i<m;i++) {

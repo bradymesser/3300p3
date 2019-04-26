@@ -33,3 +33,10 @@ check: 	#un comment the print statements to use this
 	./naive 10 10 10 > naive.txt
 	./opt 10 10 10 > opt.txt
 	diff naive.txt opt.txt
+
+check_block: 	#un comment the print statements to use this
+	gcc matmul_naive.c -o naive -O0
+	gcc opt1-2-3.c -o opt -O0
+	./naive 1024 1024 1024 > naive.txt
+	./opt 1024 1024 1024 > opt.txt
+	diff naive.txt opt.txt
