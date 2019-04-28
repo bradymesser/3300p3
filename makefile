@@ -20,6 +20,7 @@ naive:
 	./naive 5000 5000 5000
 
 opt:
+	echo "This will not work with blocking, sizes need to be a power of block size"
 	gcc matmul_opt.c -o opt -O0
 	./opt 1000 1000 1000
 	./opt 2000 2000 2000
