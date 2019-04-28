@@ -20,15 +20,15 @@ naive:
 	./naive 5000 5000 5000
 
 opt:
-	echo "This will not work with blocking, sizes need to be a power of block size"
+	echo "This will not work with blocking size=32, sizes need to be a power of block size"
 	gcc matmul_opt.c -o opt -O0
-	./opt 1000 1000 1000
-	./opt 2000 2000 2000
-	./opt 3000 3000 3000
-	./opt 4000 4000 4000
-	./opt 5000 5000 5000
+	./opt 1008 1008 1008
+	./opt 2016 2016 2016
+	./opt 3024 3024 3024
+	./opt 3984 3984 3984
+	./opt 4992 4992 4992
 
-check: 	#un comment the print statements to use this
+check: 	#un comment the print statements to use this, this does not work with blocking
 	gcc matmul_naive.c -o naive -O0
 	gcc matmul_opt.c -o opt -O0
 	./naive 10 10 10 > naive.txt
@@ -36,8 +36,9 @@ check: 	#un comment the print statements to use this
 	diff naive.txt opt.txt
 
 check_block: 	#un comment the print statements to use this
+	echo "un comment the print statements to use this or else it will not work"
 	gcc matmul_naive.c -o naive -O0
-	gcc opt1-2-3.c -o opt -O0
-	./naive 1024 1024 1024 > naive.txt
-	./opt 1024 1024 1024 > opt.txt
+	gcc matmul_opt.c -o opt -O0
+	./naive 1008 1008 1008 > naive.txt
+	./opt 1008 1008 1008 > opt.txt
 	diff naive.txt opt.txt
